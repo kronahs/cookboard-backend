@@ -7,6 +7,7 @@ const recipeRoutes = require('./routes/recipes');
 const userRoutes = require('./routes/user');
 const bookmarkRoutes = require('./routes/bookmark');
 
+const connectionString = process.env.MONGODB_CONNECTION_STRING;
 
 const app = express()
 
@@ -26,7 +27,10 @@ app.get("/", (req,res) => {
 
 
 
-mongoose.connect("mongodb+srv://root:administrator@cookboard-cluter.mcxe6ow.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
 .then( () => {
     console.log("Connected to MongoDB");
     app.listen("5000", () => {
