@@ -38,6 +38,11 @@ const recipeSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  category: {
+    type: String,
+    enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack'], // Enumerate the possible categories
+    required: true,
+  },
   likes: {
     type: Number,
   }
